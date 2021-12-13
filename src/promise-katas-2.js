@@ -25,33 +25,57 @@ fetch("joke", "question").then(<insert your callback function>)
 // 1 Create a function that uses the fetch function to make a request to the "food" URL and returns
 // the data - expected return value "Cheese" of type String
 
-const food = () => {};
+const food = () =>
+  fetch("food").then((response) => {
+    return response.data;
+  });
 
 // 2 Create a function that uses the fetch function to make a request to the "cats" URL and returns
 // a list of cats in alphabetical order - expected return value ["Bandit", "Berry", "Puss in boots", "Smokey"] of type Array
 
-const cat = () => {};
+const cat = () =>
+  fetch("cats").then((response) => {
+    return response.data.cats.sort();
+  });
 
 // 3 Create a function that uses the fetch function to make a request to the "dogs" URL and returns
 // the naughtiest dog - expected return value {name: "Mutley", naughty: 10} of type Object
 
-const dog = () => {};
+const dog = () =>
+  fetch("dogs").then((response) => {
+    let dogs = response.data.dogs;
+    //console.log(dogs);
+    let maxObj = dogs.reduce((max, next) =>
+      max.naughty > next.naughty ? max : next
+    );
+    return maxObj;
+  });
 
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
-// a joke object with the key of question and answer - expected return { 
+// a joke object with the key of question and answer - expected return {
 //     question: "Why did the scarecrow win the Nobel Prize?",
 //     answer: "Because he was out-standing in his field."
 // } of type Object
-// You will have to make more than one request to our fakeApi to get all the data you need. 
+// You will have to make more than one request to our fakeApi to get all the data you need.
 // Be aware of nesting your calls (try to avoid callback hell). Take a look at Promise.all on MDN
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 //
 
-const joke = () => {};
+const joke = () => {
+  let obj = {};
+  const question = fetch("jokes", "question");
+  const answer = fetch("jokes");
+
+  return Promise.all([question, answer]).then((response) => {
+    obj.question = response[0].joke;
+    obj.answer = response[1].answer;
+    return obj;
+  });
+};
 
 module.exports = {
-    food,
-    cat,
-    dog,
-    joke
-}
+  food,
+  cat,
+  dog,
+  joke,
+};
