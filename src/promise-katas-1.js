@@ -156,7 +156,6 @@ const amIYourFather = (name) => {
 
 const myNameIs = () => {
   return new Promise((resolve, reject) => {
-    let name;
     resolve((name) => {
       return `My name is ${name}`;
     });
