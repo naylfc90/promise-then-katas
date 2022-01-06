@@ -35,11 +35,7 @@ Remember, a Promise can only resolve successfully, or reject when it fails to re
 
 const returnPromise = () => {
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve("Success");
-    } else {
-      reject("Rejected");
-    }
+    resolve("Success");
   });
 };
 
@@ -49,11 +45,7 @@ const returnPromise = () => {
 
 const returnTen = () => {
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve(10);
-    } else {
-      reject("Not equal to 10");
-    }
+    resolve(10);
   });
 };
 
@@ -63,11 +55,7 @@ const returnTen = () => {
 
 const returnString = () => {
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve("string");
-    } else {
-      reject("Not a string");
-    }
+    resolve("string");
   });
 };
 
@@ -80,11 +68,7 @@ const returnBob = () => {
     name: "Bob",
   };
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve(person);
-    } else {
-      reject("Error");
-    }
+    resolve(person);
   });
 };
 
@@ -95,11 +79,7 @@ const returnBob = () => {
 const returnList = () => {
   const items = ["eggs", "apples", "milk", "bread"];
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve(items);
-    } else {
-      reject("Error");
-    }
+    resolve(items);
   });
 };
 
@@ -110,11 +90,7 @@ const returnList = () => {
 const anError = () => {
   let x = false;
   return new Promise((resolve, reject) => {
-    if (x) {
-      resolve("Success");
-    } else {
-      reject("An error occurred");
-    }
+    reject("An error occurred");
   });
 };
 
@@ -125,11 +101,7 @@ const anError = () => {
 const theNumberOfTheBeast = () => {
   let x = false;
   return new Promise((resolve, reject) => {
-    if (x) {
-      resolve("Success");
-    } else {
-      reject(666);
-    }
+    reject(666);
   });
 };
 
@@ -141,13 +113,8 @@ const internalServerError = () => {
   let errorMessage = {
     error: 500,
   };
-  let x = false;
   return new Promise((resolve, reject) => {
-    if (x) {
-      resolve("Success");
-    } else {
-      reject(errorMessage);
-    }
+    reject(errorMessage);
   });
 };
 
@@ -161,7 +128,7 @@ const happySad = (n) => {
   return new Promise((resolve, reject) => {
     if (n >= 1) {
       resolve("happy");
-    } else if (n < 1) {
+    } else {
       reject("sad");
     }
   });
@@ -177,7 +144,7 @@ const amIYourFather = (name) => {
   return new Promise((resolve, reject) => {
     if (name === "Luke") {
       resolve("Yes. Luke, I am your father.");
-    } else if (name !== "Luke") {
+    } else {
       reject("Not your dad.");
     }
   });
