@@ -157,13 +157,9 @@ const amIYourFather = (name) => {
 const myNameIs = () => {
   return new Promise((resolve, reject) => {
     let name;
-    if (true) {
-      resolve((name) => {
-        return `My name is ${name}`;
-      });
-    } else {
-      reject("Error");
-    }
+    resolve((name) => {
+      return `My name is ${name}`;
+    });
   });
 };
 
